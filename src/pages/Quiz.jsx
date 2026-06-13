@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import confetti from 'canvas-confetti';
 
 function Quiz() {
   const { questions, setCurrentScore } = useContext(AppContext);
@@ -58,14 +57,6 @@ function Quiz() {
   const triggerGoal = () => {
     setShotStatus('goal');
     setCurrentScore(prev => prev + 1);
-    
-    // Confetti effect
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#00e676', '#ffffff']
-    });
 
     setTimeout(() => {
       setShotStatus('idle');
@@ -109,38 +100,6 @@ function Quiz() {
           </div>
         </div>
 
-        <div className="stadium-mini mb-4">
-          <div className="penalty-area"></div>
-          <div className="goal-area"></div>
-          <div className="penalty-arc"></div>
-          <div className="penalty-spot"></div>
-          
-          <div className="goal-post-3d"></div>
-
-          <div style={{position: 'absolute', top: '8px', left: '50%', zIndex: 2}}>
-            <div className={`gk-figure ${shotStatus === 'goal' ? 'dive-away' : ''} ${shotStatus === 'miss' ? 'dive-save' : ''}`}>
-              <div className="gk-head"></div>
-              <div className="gk-body">
-                1
-                <div className="gk-hands">
-                  <div className="gk-hand"></div>
-                  <div className="gk-hand"></div>
-                </div>
-              </div>
-              <div className="gk-legs">
-                <div className="gk-leg"></div>
-                <div className="gk-leg"></div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{position: 'absolute', top: '115px', left: '50%', zIndex: 3}}>
-            <div className={`soccer-ball-wrapper ${shotStatus === 'goal' ? 'shoot-goal' : ''} ${shotStatus === 'miss' ? 'shoot-miss' : ''}`}>
-              {shotStatus === 'idle' && <div className="ball-dashed-ring"></div>}
-              <div style={{ fontSize: '1.5rem', background: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset -2px -2px 4px rgba(0,0,0,0.3)' }}>⚽</div>
-            </div>
-          </div>
-        </div>
 
         <h2 className="mb-4 text-center" style={{ fontSize: '1.2rem', minHeight: '60px' }}>
           {currentQ.text}
