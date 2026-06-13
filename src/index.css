@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --pitch-green: #0a1f11;
+  --pitch-light-green: #0e2b17;
+  --pitch-lines: rgba(255, 255, 255, 0.08);
+  --neon-accent: #00e676;
+  --neon-glow: 0 0 8px rgba(0, 230, 118, 0.4);
+  --neon-glow-red: 0 0 8px rgba(255, 61, 61, 0.4);
+  --neon-red: #ff3d3d;
+  --text-primary: #f0f4f8;
+  --text-secondary: #94a3b8;
+  --card-bg: rgba(10, 31, 17, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --gold: #f59e0b;
+  --silver: #94a3b8;
+  --bronze: #b45309;
+  
+  --font-main: 'Roboto', sans-serif;
+  --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: repeating-linear-gradient(
+    0deg,
+    var(--pitch-green),
+    var(--pitch-green) 50px,
+    var(--pitch-light-green) 50px,
+    var(--pitch-light-green) 100px
+  );
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add a stadium spotlight overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.8) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.btn-primary {
+  background: var(--pitch-light-green);
+  color: var(--neon-accent);
+  border: 2px solid var(--neon-accent);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: var(--neon-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--neon-accent);
+  color: #000;
+  box-shadow: 0 0 20px var(--neon-accent), 0 0 40px var(--neon-accent);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: 1px solid var(--card-border);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.text-neon {
+  color: var(--neon-accent);
+  text-shadow: var(--neon-glow);
+}
+
+.text-neon-red {
+  color: var(--neon-red);
+  text-shadow: var(--neon-glow-red);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Flex utilities */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+
+/* Form inputs */
+input, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--card-border);
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: white;
+  font-family: var(--font-main);
+  margin-bottom: 1rem;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes goalEffect {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.goal-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--neon-accent);
+  text-shadow: var(--neon-glow);
+  z-index: 100;
+  pointer-events: none;
+  animation: goalEffect 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Soccer Animation Classes */
+.stadium-mini {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #2a7630,
+    #2a7630 25px,
+    #236328 25px,
+    #236328 50px
+  );
+  border: 2px solid var(--pitch-lines);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Goal Area (Small Box) */
+.goal-area {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: none;
+}
+
+/* Penalty Area (Large Box) */
+.penalty-area {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-top: none;
+}
+
+/* Penalty Arc (The D) */
+.penalty-arc {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0 0 60px 60px;
+  border-top: none;
+}
+
+/* Penalty Spot */
+.penalty-spot {
+  position: absolute;
+  top: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+}
+
+/* The Goal Post */
+.goal-post-3d {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 22px;
+  border: 4px solid #d1d5db;
+  border-bottom: none;
+  background: 
+    linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+  background-size: 8px 8px;
+  box-shadow: inset 0 8px 8px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+/* Goalkeeper */
+.gk-figure {
+  width: 40px;
+  height: 50px;
+  transform: translateX(-50%) scale(0.6);
+  transform-origin: top center;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gk-head {
+  width: 20px;
+  height: 20px;
+  background: #fbbf24;
+  border-radius: 50%;
+  position: relative;
+}
+.gk-head::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 4px;
+  width: 3px; height: 3px; background: black; border-radius: 50%;
+  box-shadow: 9px 0 0 black;
+}
+.gk-body {
+  width: 24px;
+  height: 20px;
+  background: #ef4444;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+}
+.gk-hands {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.gk-hand {
+  width: 10px; height: 10px; background: #fbbf24; border-radius: 50%;
+}
+.gk-legs {
+  width: 16px;
+  height: 10px;
+  background: #1f2937;
+  display: flex;
+  justify-content: space-between;
+}
+.gk-leg { width: 6px; height: 100%; background: #1f2937; }
+
+/* The Ball */
+.soccer-ball-wrapper {
+  transform: translateX(-50%) scale(0.6);
+  transform-origin: center center;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Dashed circle around the ball */
+.ball-dashed-ring {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border: 2px dashed rgba(255,255,255,0.5);
+  border-radius: 50%;
+  animation: spin 4s linear infinite;
+}
+
+/* Animations */
+.gk-figure.dive-save {
+  transform: translate(calc(-50% - 20px), 0) rotate(-45deg) scale(0.6);
+}
+
+.gk-figure.dive-away {
+  transform: translate(calc(-50% + 20px), 0) rotate(45deg) scale(0.6);
+}
+
+.soccer-ball-wrapper.shoot-goal {
+  transform: translate(calc(-50% - 25px), -100px) scale(0.35);
+}
+
+.soccer-ball-wrapper.shoot-miss {
+  transform: translate(calc(-50% - 20px), -85px) scale(0.4);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 1rem;
+  }
+  .glass-card {
+    padding: 1.5rem;
+  }
+}

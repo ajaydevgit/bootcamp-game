@@ -1,0 +1,1135 @@
+[
+  {
+    "question": "In a FIFA game leaderboard stored as an array, what is the time complexity to access the score of the player at rank k (0-based index)?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Random access in an array by index is O(1)."
+  },
+  {
+    "question": "You store player ratings in a sorted array and want to insert a new player's rating while keeping it sorted. What is the worst-case time complexity?",
+    "options": {
+      "A": "O(log n)",
+      "B": "O(n)",
+      "C": "O(1)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Finding position is O(log n) but shifting elements makes insertion O(n)."
+  },
+  {
+    "question": "A FIFA team’s formation is stored as an array of 11 players. To rotate the formation k positions to the right in-place, what is the optimal time complexity?",
+    "options": {
+      "A": "O(k)",
+      "B": "O(n)",
+      "C": "O(nk)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Optimal in-place rotation using reversals takes O(n) time."
+  },
+  {
+    "question": "You have an array of goal timestamps for a player in a match (sorted). Which algorithm is best to quickly check if they scored at minute x?",
+    "options": {
+      "A": "Linear Search",
+      "B": "Binary Search",
+      "C": "Jump Search",
+      "D": "Interpolation Search"
+    },
+    "correctAnswer": "B",
+    "explanation": "Binary search is the standard choice on sorted arrays for fast lookups."
+  },
+  {
+    "question": "You have an array of FIFA players' overall ratings. To find the top 3 ratings efficiently, which approach is best?",
+    "options": {
+      "A": "Sort the entire array and take last 3",
+      "B": "Use a min-heap of size 3",
+      "C": "Use binary search repeatedly",
+      "D": "Use linear search three separate times"
+    },
+    "correctAnswer": "B",
+    "explanation": "A fixed-size min-heap tracks the top k elements in O(n log k)."
+  },
+  {
+    "question": "For a FIFA squad name string of length n, what is the worst-case time complexity to check if it is a palindrome?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "You must compare up to n/2 character pairs, which is O(n)."
+  },
+  {
+    "question": "You need to count how many times the pattern \"GOAL\" appears in a FIFA commentary string of length n. What is the worst-case time complexity of the naive approach?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(n^2)",
+      "D": "O(1)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Naive substring search can compare at each position, giving O(nm); with constant m it is O(n), but generally O(nm) which can be O(n^2)."
+  },
+  {
+    "question": "You concatenate two FIFA club names represented as strings of lengths n and m. What is the time complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log(n+m))",
+      "C": "O(n+m)",
+      "D": "O(nm)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Building the new string requires copying all n + m characters."
+  },
+  {
+    "question": "You want to reverse the order of characters in a FIFA player's name stored as a mutable character array. What is the optimal space complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(log n)",
+      "C": "O(1)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Two-pointer in-place reversal uses constant extra space."
+  },
+  {
+    "question": "To check if two FIFA club names are anagrams (same letters, different order), which data structure is most efficient?",
+    "options": {
+      "A": "Stack",
+      "B": "Queue",
+      "C": "Hash Map",
+      "D": "Binary Search Tree"
+    },
+    "correctAnswer": "C",
+    "explanation": "A hash map can count character frequencies in linear time."
+  },
+  {
+    "question": "You model a passing sequence in a FIFA match as a singly linked list where each node holds the player who received the ball next. What is the time complexity to find the k-th pass from the start?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log k)",
+      "C": "O(k)",
+      "D": "O(n log k)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Access in singly linked lists requires traversing from the head, taking O(k)."
+  },
+  {
+    "question": "You want to insert a new pass node at the head of a singly linked list representing a FIFA passing chain. What is the time complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Inserting at the head of a singly linked list is a constant-time pointer change."
+  },
+  {
+    "question": "To detect if a FIFA ball-passing sequence (linked list) enters a loop, which algorithm is most suitable?",
+    "options": {
+      "A": "Dijkstra's algorithm",
+      "B": "Floyd’s cycle-finding algorithm",
+      "C": "Kruskal’s algorithm",
+      "D": "Bellman-Ford algorithm"
+    },
+    "correctAnswer": "B",
+    "explanation": "Floyd’s cycle-finding uses slow and fast pointers to detect loops in O(n) time."
+  },
+  {
+    "question": "You are given two sorted linked lists of player ratings from two FIFA squads and must merge them into one sorted list. What is the time complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(m+n)",
+      "C": "O(mn)",
+      "D": "O((m+n) log(m+n))"
+    },
+    "correctAnswer": "B",
+    "explanation": "Merging two sorted lists requires a linear pass through both lists."
+  },
+  {
+    "question": "In a doubly linked list of FIFA match events, what is the time complexity to delete a given node if you already have a pointer to it?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "With direct access, you just fix neighboring pointers in constant time."
+  },
+  {
+    "question": "You simulate the order of penalty shots using a stack. Which operation retrieves the next shooter?",
+    "options": {
+      "A": "enqueue",
+      "B": "dequeue",
+      "C": "push",
+      "D": "pop"
+    },
+    "correctAnswer": "D",
+    "explanation": "Stacks use pop to remove and return the last pushed element (LIFO)."
+  },
+  {
+    "question": "In a stack-based undo system for FIFA tactics changes, what is the time complexity of push and pop operations?",
+    "options": {
+      "A": "O(1) average",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Stack push and pop are constant-time operations on average."
+  },
+  {
+    "question": "You use two stacks to implement a queue of FIFA match events. What is the amortized time complexity of enqueue?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Two-stack queue gives O(1) amortized enqueue and dequeue."
+  },
+  {
+    "question": "You need to check if brackets in a FIFA tactics string (representing nested options) are balanced. Which data structure is ideal?",
+    "options": {
+      "A": "Queue",
+      "B": "Stack",
+      "C": "Hash Map",
+      "D": "Heap"
+    },
+    "correctAnswer": "B",
+    "explanation": "Stacks naturally support matching nested structures like brackets."
+  },
+  {
+    "question": "You manage a queue of FIFA online players waiting for matchmaking. Which operation removes the front player?",
+    "options": {
+      "A": "push",
+      "B": "enqueue",
+      "C": "pop",
+      "D": "dequeue"
+    },
+    "correctAnswer": "D",
+    "explanation": "Queues use dequeue to remove from the front (FIFO)."
+  },
+  {
+    "question": "A circular queue stores the upcoming FIFA tournament matches. When the rear index reaches the end of the array, what happens next?",
+    "options": {
+      "A": "It overflows permanently",
+      "B": "It wraps around to index 0",
+      "C": "It moves backwards",
+      "D": "It skips one position"
+    },
+    "correctAnswer": "B",
+    "explanation": "A circular queue reuses array space by wrapping rear to 0."
+  },
+  {
+    "question": "You store FIFA player usernames in a hash table. Which scenario most likely causes a collision?",
+    "options": {
+      "A": "Two different usernames with same hash index",
+      "B": "Two identical usernames",
+      "C": "Empty hash table",
+      "D": "A very large table size"
+    },
+    "correctAnswer": "A",
+    "explanation": "A collision occurs when different keys map to the same bucket index."
+  },
+  {
+    "question": "Which collision resolution technique in a hash table can suffer from primary clustering?",
+    "options": {
+      "A": "Separate chaining",
+      "B": "Double hashing",
+      "C": "Linear probing",
+      "D": "Cuckoo hashing"
+    },
+    "correctAnswer": "C",
+    "explanation": "Linear probing tends to create primary clusters of occupied slots."
+  },
+  {
+    "question": "In a hash table storing FIFA player IDs, what is the average time complexity of search with a good hash function and low load factor?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Hash tables give expected O(1) search when collisions are few."
+  },
+  {
+    "question": "You maintain a binary tree where each node represents a FIFA match round. What is the maximum number of nodes in a complete binary tree of height h (root at height 0)?",
+    "options": {
+      "A": "2^h",
+      "B": "2^(h+1) - 1",
+      "C": "h^2",
+      "D": "2h"
+    },
+    "correctAnswer": "B",
+    "explanation": "A complete binary tree of height h can have up to 2^(h+1) - 1 nodes."
+  },
+  {
+    "question": "In a full binary tree representing FIFA tournament stages, each internal node has exactly two children. If there are I internal nodes, how many leaves are there?",
+    "options": {
+      "A": "I - 1",
+      "B": "I",
+      "C": "I + 1",
+      "D": "2I"
+    },
+    "correctAnswer": "C",
+    "explanation": "In a full binary tree, number of leaves = internal nodes + 1."
+  },
+  {
+    "question": "Which traversal of a binary tree listing FIFA matches visits nodes in 'left subtree, root, right subtree' order?",
+    "options": {
+      "A": "Preorder",
+      "B": "Inorder",
+      "C": "Postorder",
+      "D": "Level-order"
+    },
+    "correctAnswer": "B",
+    "explanation": "Inorder traversal is left-root-right."
+  },
+  {
+    "question": "In a Binary Search Tree of player ratings, what is the worst-case time complexity to search for a rating?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "An unbalanced BST can degenerate into a chain, giving O(n) search."
+  },
+  {
+    "question": "In a balanced BST of FIFA player ratings, where n is the number of players, what is the height approximately?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Balanced BSTs keep height proportional to log n."
+  },
+  {
+    "question": "Which property must hold in a Binary Search Tree of FIFA player ratings?",
+    "options": {
+      "A": "All left children have greater ratings than parent",
+      "B": "All right children have smaller ratings than parent",
+      "C": "Left subtree ratings < node rating < right subtree ratings",
+      "D": "Left and right subtrees are identical"
+    },
+    "correctAnswer": "C",
+    "explanation": "BST invariant is left < node < right for all nodes."
+  },
+  {
+    "question": "You use a max-heap to track the top-scoring FIFA players. Where is the highest score stored?",
+    "options": {
+      "A": "At any leaf",
+      "B": "At the root",
+      "C": "At the leftmost node",
+      "D": "At the rightmost node"
+    },
+    "correctAnswer": "B",
+    "explanation": "The max-heap property ensures the maximum element is at the root."
+  },
+  {
+    "question": "In a binary max-heap of size n storing FIFA match scores, what is the time complexity of inserting a new score?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Insertion may percolate up along the heap height, which is O(log n)."
+  },
+  {
+    "question": "In an array representation of a binary heap (1-based indexing), if a node is at index i, what is the index of its left child?",
+    "options": {
+      "A": "i + 1",
+      "B": "2i",
+      "C": "2i + 1",
+      "D": "i - 1"
+    },
+    "correctAnswer": "B",
+    "explanation": "Left child in a 1-based heap is at index 2i."
+  },
+  {
+    "question": "You model FIFA stadiums and roads between them as a graph. To find the minimum number of roads from one stadium to another in an unweighted graph, which algorithm is best?",
+    "options": {
+      "A": "Depth-First Search",
+      "B": "Breadth-First Search",
+      "C": "Prim's Algorithm",
+      "D": "Kruskal's Algorithm"
+    },
+    "correctAnswer": "B",
+    "explanation": "BFS finds the shortest path in terms of edges in unweighted graphs."
+  },
+  {
+    "question": "In an adjacency list representation for a FIFA tournament graph with V teams and E matches, what is the space complexity?",
+    "options": {
+      "A": "O(V)",
+      "B": "O(E)",
+      "C": "O(V+E)",
+      "D": "O(VE)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Adjacency list stores each vertex plus its edges, using O(V+E) space."
+  },
+  {
+    "question": "You need to check if the FIFA tournament graph (teams as nodes, matches as edges) is connected. Which traversal can do this?",
+    "options": {
+      "A": "Only DFS",
+      "B": "Only BFS",
+      "C": "Either DFS or BFS",
+      "D": "Neither DFS nor BFS"
+    },
+    "correctAnswer": "C",
+    "explanation": "Both DFS and BFS can explore all reachable nodes to test connectivity."
+  },
+  {
+    "question": "In BFS on a graph of FIFA stadiums, which data structure is typically used to store the frontier nodes?",
+    "options": {
+      "A": "Stack",
+      "B": "Queue",
+      "C": "Priority Queue",
+      "D": "Deque"
+    },
+    "correctAnswer": "B",
+    "explanation": "BFS uses a queue to process nodes in FIFO order."
+  },
+  {
+    "question": "In DFS on a graph of FIFA teams, which data structure is typically used (iterative implementation)?",
+    "options": {
+      "A": "Queue",
+      "B": "Stack",
+      "C": "Priority Queue",
+      "D": "Hash Table"
+    },
+    "correctAnswer": "B",
+    "explanation": "DFS uses a stack (explicit or recursion call stack) for LIFO exploration."
+  },
+  {
+    "question": "You need to schedule FIFA matches so that no two conflicting matches overlap (interval scheduling). Which algorithmic paradigm is best?",
+    "options": {
+      "A": "Dynamic Programming",
+      "B": "Greedy Algorithm",
+      "C": "Divide and Conquer",
+      "D": "Backtracking"
+    },
+    "correctAnswer": "B",
+    "explanation": "Activity/interval scheduling is optimally solved by a greedy strategy."
+  },
+  {
+    "question": "Which sorting algorithm has the best average-case time complexity for sorting FIFA player ratings in an array?",
+    "options": {
+      "A": "Bubble Sort",
+      "B": "Insertion Sort",
+      "C": "Merge Sort",
+      "D": "Selection Sort"
+    },
+    "correctAnswer": "C",
+    "explanation": "Merge sort runs in O(n log n) average and worst case."
+  },
+  {
+    "question": "Which sorting algorithm is in-place and has an average time complexity of O(n log n), often used in practice to sort FIFA scores?",
+    "options": {
+      "A": "Merge Sort",
+      "B": "Quick Sort",
+      "C": "Counting Sort",
+      "D": "Radix Sort"
+    },
+    "correctAnswer": "B",
+    "explanation": "Quicksort is in-place with average O(n log n) but O(n^2) worst case."
+  },
+  {
+    "question": "If you sort n FIFA player ratings using Heap Sort, what is the worst-case time complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(n^2)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Heap sort always runs in O(n log n) time."
+  },
+  {
+    "question": "Which searching algorithm requires the array of FIFA rankings to be sorted beforehand?",
+    "options": {
+      "A": "Linear Search",
+      "B": "Binary Search",
+      "C": "Hashing",
+      "D": "DFS"
+    },
+    "correctAnswer": "B",
+    "explanation": "Binary search only works correctly on sorted data."
+  },
+  {
+    "question": "You want to count how many players scored in at least k consecutive FIFA matches using a sliding window over an array of goals per match. What is the typical time complexity of a sliding window solution?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Sliding window usually scans the array with left and right pointers in O(n)."
+  },
+  {
+    "question": "In a sliding window used on FIFA match scores, what is the main invariant maintained when moving the right pointer?",
+    "options": {
+      "A": "Window size always decreases",
+      "B": "Window uniqueness or sum/condition is updated incrementally",
+      "C": "Window resets on each move",
+      "D": "Window always covers full array"
+    },
+    "correctAnswer": "B",
+    "explanation": "Sliding window maintains a condition (sum, count, uniqueness) as pointers move."
+  },
+  {
+    "question": "You use the two-pointer technique on a sorted list of FIFA player speeds to find a pair whose sum equals a target. How do the pointers move if the sum is too small?",
+    "options": {
+      "A": "Move left pointer left",
+      "B": "Move right pointer right",
+      "C": "Move left pointer right",
+      "D": "Move right pointer left"
+    },
+    "correctAnswer": "C",
+    "explanation": "To increase the sum in a sorted array, advance the left (smaller) pointer right."
+  },
+  {
+    "question": "In two-pointer technique on FIFA match minutes, what typical condition allows both pointers to move inward (left++ and right--)?",
+    "options": {
+      "A": "When sum < target",
+      "B": "When sum > target",
+      "C": "When sum == target",
+      "D": "Always"
+    },
+    "correctAnswer": "C",
+    "explanation": "When a pair is found, often both pointers move to search for another pair."
+  },
+  {
+    "question": "You want to compute the maximum number of goals scored in any k consecutive FIFA matches given an array of goals. Which pattern best fits?",
+    "options": {
+      "A": "Two pointers on unsorted array without constraint",
+      "B": "Sliding window of fixed size k",
+      "C": "Binary search on goal values",
+      "D": "DFS on a tree"
+    },
+    "correctAnswer": "B",
+    "explanation": "Fixed-size sliding window naturally captures sums of k consecutive elements."
+  },
+  {
+    "question": "You use recursion to simulate a FIFA knockout tournament tree. Each match leads to two recursive calls for its child matches. What is the time complexity in terms of number of nodes n in a full binary tree?",
+    "options": {
+      "A": "O(log n)",
+      "B": "O(n)",
+      "C": "O(n log n)",
+      "D": "O(2^n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Each node (match) is processed once, giving O(n)."
+  },
+  {
+    "question": "In recursive DFS over a FIFA tournament bracket tree, what data structure implicitly stores the current path?",
+    "options": {
+      "A": "Heap",
+      "B": "Queue",
+      "C": "Call Stack",
+      "D": "Hash Table"
+    },
+    "correctAnswer": "C",
+    "explanation": "Recursive calls use the call stack to hold the traversal path."
+  },
+  {
+    "question": "Which situation in a FIFA stats problem suggests using divide and conquer?",
+    "options": {
+      "A": "Need to greedily pick highest rating",
+      "B": "Need to split stats into halves and solve independently",
+      "C": "Need to remember overlapping subproblems",
+      "D": "Need to try all combinations"
+    },
+    "correctAnswer": "B",
+    "explanation": "Divide and conquer splits the problem into independent subproblems (e.g., halves)."
+  },
+  {
+    "question": "You want to compute the number of ways a FIFA team can reach a target score with given scoring options (1, 2, 3 goals). Which paradigm best fits?",
+    "options": {
+      "A": "Greedy",
+      "B": "Dynamic Programming",
+      "C": "Divide and Conquer without memo",
+      "D": "Backtracking only"
+    },
+    "correctAnswer": "B",
+    "explanation": "Counting ways with overlapping subproblems is classic dynamic programming."
+  },
+  {
+    "question": "In a DP table for FIFA match outcomes of size n x m, what is the space complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(n)",
+      "C": "O(m)",
+      "D": "O(nm)"
+    },
+    "correctAnswer": "D",
+    "explanation": "A 2D DP table with n rows and m columns uses O(nm) space."
+  },
+  {
+    "question": "You want to maximize total FIFA player chemistry under a budget using players with cost and chemistry values. This is closest to which classic DP problem?",
+    "options": {
+      "A": "Longest Common Subsequence",
+      "B": "0/1 Knapsack",
+      "C": "Longest Increasing Subsequence",
+      "D": "Coin Change (min coins)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Choosing items under a cost constraint to maximize value is the 0/1 Knapsack pattern."
+  },
+  {
+    "question": "A greedy algorithm for selecting FIFA matches chooses the match that finishes earliest next. This resembles which classic problem?",
+    "options": {
+      "A": "Activity selection",
+      "B": "Knapsack 0/1",
+      "C": "Bellman-Ford",
+      "D": "Floyd-Warshall"
+    },
+    "correctAnswer": "A",
+    "explanation": "Choosing intervals by earliest finish time is the activity selection problem."
+  },
+  {
+    "question": "You must pick FIFA players to maximize attacking rating with no two adjacent players on the list chosen (think of players in a line). Which algorithmic idea best fits?",
+    "options": {
+      "A": "Pure greedy from left to right",
+      "B": "Dynamic Programming on index with choose/skip",
+      "C": "DFS without memoization",
+      "D": "Binary search on indices"
+    },
+    "correctAnswer": "B",
+    "explanation": "This is analogous to House Robber, solved with DP choosing or skipping each index."
+  },
+  {
+    "question": "To represent binary attributes of a FIFA player (e.g., left-footed, captain, injured) compactly, which technique is best?",
+    "options": {
+      "A": "Linked List",
+      "B": "Heap",
+      "C": "Hash Table",
+      "D": "Bit Masking"
+    },
+    "correctAnswer": "D",
+    "explanation": "Bit masking packs multiple boolean flags into a single integer."
+  },
+  {
+    "question": "Given a bitmask representing active FIFA players on the field, what does the operation mask & (mask - 1) typically do?",
+    "options": {
+      "A": "Sets all bits to 1",
+      "B": "Toggles all bits",
+      "C": "Clears the least significant set bit",
+      "D": "Sets the least significant bit"
+    },
+    "correctAnswer": "C",
+    "explanation": "mask & (mask - 1) removes the lowest set bit from mask."
+  },
+  {
+    "question": "You want to check if a number of FIFA goals g is a power of 2 using bit operations. Which condition works for g > 0?",
+    "options": {
+      "A": "g & (g - 1) == 0",
+      "B": "g | (g - 1) == 0",
+      "C": "g ^ (g - 1) == 0",
+      "D": "g + (g - 1) == 0"
+    },
+    "correctAnswer": "A",
+    "explanation": "Powers of two have only one set bit, so g & (g - 1) equals 0."
+  },
+  {
+    "question": "You toggle the captain flag for a FIFA player using bit operations. Which operation flips a single bit?",
+    "options": {
+      "A": "AND with mask",
+      "B": "OR with mask",
+      "C": "XOR with mask",
+      "D": "Shift left"
+    },
+    "correctAnswer": "C",
+    "explanation": "XOR with 1 at a bit position flips that bit."
+  },
+  {
+    "question": "Consider the pseudocode on FIFA player scores array arr of size n:\n\nscore = 0\nfor i from 0 to n-1:\n  for j from i+1 to n-1:\n    score += 1\n\nWhat is the time complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(n^2)",
+      "D": "O(2^n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Nested loops over n elements with j starting from i+1 give O(n^2) iterations."
+  },
+  {
+    "question": "Consider the pseudocode on FIFA scores:\n\nfor i from 1 to n:\n  j = i\n  while j <= n:\n    j = j * 2\n\nWhat is the time complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(n^2)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "B",
+    "explanation": "Inner loop doubles j, running O(log n) times per i, giving O(n log n)."
+  },
+  {
+    "question": "In an algorithm on FIFA players, you always perform 100 operations regardless of n. What is the time complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "A",
+    "explanation": "A constant number of operations gives O(1) time complexity."
+  },
+  {
+    "question": "If an algorithm on FIFA match data has time complexity 3n^2 + 5n + 10, what is its Big-O?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(n)",
+      "C": "O(n^2)",
+      "D": "O(n^3)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Big-O keeps the dominant term, so 3n^2 + lower terms is O(n^2)."
+  },
+  {
+    "question": "For an algorithm that scans a FIFA player list once and uses a hash set to store seen players, what is the space complexity in terms of n players?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Storing up to all players in a hash set costs O(n) space."
+  },
+  {
+    "question": "You store FIFA player names in a trie for autocomplete. Each node represents:",
+    "options": {
+      "A": "A full word only",
+      "B": "A character or prefix",
+      "C": "A hash bucket",
+      "D": "A linked list head"
+    },
+    "correctAnswer": "B",
+    "explanation": "Trie nodes typically represent prefixes built character by character."
+  },
+  {
+    "question": "What is the time complexity to insert a FIFA player name of length L into a trie?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log L)",
+      "C": "O(L)",
+      "D": "O(L^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Trie insertion processes each character once, giving O(L)."
+  },
+  {
+    "question": "In a trie storing FIFA club names with total characters N across all names, what is the worst-case space complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log N)",
+      "C": "O(N)",
+      "D": "O(N^2)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Each character can correspond to one node, giving O(N) space."
+  },
+  {
+    "question": "Which scenario best motivates using a trie for FIFA-related data?",
+    "options": {
+      "A": "Need to store unique random integers",
+      "B": "Need fast prefix-based search on player names",
+      "C": "Need to maintain a sorted list of scores",
+      "D": "Need constant-time index access"
+    },
+    "correctAnswer": "B",
+    "explanation": "Tries are ideal for prefix queries like name autocomplete."
+  },
+  {
+    "question": "You use Union-Find to group FIFA players into the same club components. The 'find' operation with path compression has what amortized time complexity?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(α(n)) (inverse Ackermann)"
+    },
+    "correctAnswer": "D",
+    "explanation": "With union by rank and path compression, operations run in O(α(n)) amortized."
+  },
+  {
+    "question": "Union-Find (Disjoint Set Union) is especially useful for which type of FIFA graph problem?",
+    "options": {
+      "A": "Shortest path between stadiums",
+      "B": "Detecting cycles in an undirected match graph",
+      "C": "Topological sorting of rounds",
+      "D": "Maximum flow of tickets"
+    },
+    "correctAnswer": "B",
+    "explanation": "Union-Find efficiently detects cycles while processing edges in undirected graphs."
+  },
+  {
+    "question": "In Union-Find, what does the 'union' operation do with two FIFA player elements a and b?",
+    "options": {
+      "A": "Checks if a and b are equal",
+      "B": "Finds the path between a and b",
+      "C": "Merges the sets containing a and b",
+      "D": "Deletes a and b"
+    },
+    "correctAnswer": "C",
+    "explanation": "Union merges the disjoint sets that contain the two elements."
+  },
+  {
+    "question": "You maintain connected components of FIFA teams using Union-Find with union by rank. What is the rank typically approximating?",
+    "options": {
+      "A": "Number of players in the set",
+      "B": "Depth/height of the tree",
+      "C": "Team's FIFA ranking",
+      "D": "Hash value of the set"
+    },
+    "correctAnswer": "B",
+    "explanation": "Rank usually estimates the tree height to keep it shallow."
+  },
+  {
+    "question": "Consider the pseudocode on FIFA goals array arr of size n:\n\nsum = 0\nfor i from 0 to n-1:\n  sum += arr[i]\nif sum > 0:\n  for i from 0 to n-1:\n    sum -= 1\n\nWhat is the time complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(log n)",
+      "C": "O(n^2)",
+      "D": "O(1)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Two separate O(n) loops give overall O(n)."
+  },
+  {
+    "question": "Consider the pseudocode on FIFA player list size n:\n\nfor i from 1 to n:\n  for j from 1 to i:\n    do_constant_work()\n\nWhat is the time complexity?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(n^2)",
+      "D": "O(2^n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Total operations sum to 1+2+...+n = O(n^2)."
+  },
+  {
+    "question": "You run BFS on a FIFA match graph with V vertices and E edges using an adjacency list. What is the time complexity?",
+    "options": {
+      "A": "O(V)",
+      "B": "O(E)",
+      "C": "O(V+E)",
+      "D": "O(VE)"
+    },
+    "correctAnswer": "C",
+    "explanation": "BFS on adjacency list visits each vertex and edge at most once: O(V+E)."
+  },
+  {
+    "question": "You run DFS recursively on the same FIFA match graph (adjacency list) with V vertices and E edges. What is the time complexity?",
+    "options": {
+      "A": "O(V)",
+      "B": "O(E)",
+      "C": "O(V+E)",
+      "D": "O(VE)"
+    },
+    "correctAnswer": "C",
+    "explanation": "DFS also runs in O(V+E) on adjacency list representation."
+  },
+  {
+    "question": "Which graph representation is best suited when the FIFA tournament graph is sparse (few matches compared to possible pairs)?",
+    "options": {
+      "A": "Adjacency matrix",
+      "B": "Adjacency list",
+      "C": "Edge list only",
+      "D": "Incidence matrix"
+    },
+    "correctAnswer": "B",
+    "explanation": "Adjacency lists are space-efficient and fast for sparse graphs."
+  },
+  {
+    "question": "For checking if two FIFA players are directly connected by a match in a very dense tournament graph, which representation can answer in O(1)?",
+    "options": {
+      "A": "Adjacency matrix",
+      "B": "Adjacency list",
+      "C": "Edge list",
+      "D": "Union-Find"
+    },
+    "correctAnswer": "A",
+    "explanation": "Adjacency matrices let you test edge existence in constant time."
+  },
+  {
+    "question": "You have an array of FIFA scores and you perform Quickselect to find the k-th highest score. What is the average time complexity?",
+    "options": {
+      "A": "O(k)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Quickselect finds the k-th order statistic in expected linear time."
+  },
+  {
+    "question": "Which data structure is best for implementing a priority queue of FIFA transfer offers, where highest bid is served first?",
+    "options": {
+      "A": "Array",
+      "B": "Linked List",
+      "C": "Binary Heap",
+      "D": "Hash Table"
+    },
+    "correctAnswer": "C",
+    "explanation": "Binary heaps efficiently support priority queues with O(log n) insert and extract-max."
+  },
+  {
+    "question": "You maintain a leaderboard of FIFA players that frequently changes due to new matches. Which structure gives O(log n) inserts and O(log n) search for rankings?",
+    "options": {
+      "A": "Unsorted array",
+      "B": "Sorted linked list",
+      "C": "Balanced BST (like AVL/Red-Black tree)",
+      "D": "Stack"
+    },
+    "correctAnswer": "C",
+    "explanation": "Balanced BSTs maintain sorted order with O(log n) updates and queries."
+  },
+  {
+    "question": "Consider the pseudocode:\n\nfunction f(n):\n  if n <= 1: return 1\n  return f(n-1) + f(n-1)\n\nWhat is the time complexity in terms of n (think of n as levels of a FIFA tournament)?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n^2)",
+      "C": "O(2^n)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "The recursion tree doubles at each level, leading to O(2^n) calls."
+  },
+  {
+    "question": "You design a DP for counting FIFA formations with recurrence T(n) = T(n-1) + T(n-2) and use memoization. What is the time complexity?",
+    "options": {
+      "A": "O(2^n)",
+      "B": "O(n^2)",
+      "C": "O(n)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Each T(k) is computed once and reused, giving O(n) time."
+  },
+  {
+    "question": "Which of the following is NOT a stable sorting algorithm in its typical implementation for sorting FIFA players by name?",
+    "options": {
+      "A": "Merge Sort",
+      "B": "Insertion Sort",
+      "C": "Bubble Sort",
+      "D": "Heap Sort"
+    },
+    "correctAnswer": "D",
+    "explanation": "Heap sort is not stable in its usual form, while the others are stable."
+  },
+  {
+    "question": "You have a queue of FIFA penalty takers implemented using a linked list with head and tail pointers. What is the time complexity of enqueue?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "With a tail pointer, enqueue at the end is O(1)."
+  },
+  {
+    "question": "Consider this pseudocode on an array of FIFA scores arr, n elements:\n\nfor gap = n/2 to 1 step gap = gap/2:\n  for i from gap to n-1:\n    j = i\n    while j >= gap and arr[j-gap] > arr[j]:\n      swap(arr[j-gap], arr[j])\n      j = j - gap\n\nWhich sorting algorithm is this?",
+    "options": {
+      "A": "Insertion Sort",
+      "B": "Selection Sort",
+      "C": "Shell Sort",
+      "D": "Bubble Sort"
+    },
+    "correctAnswer": "C",
+    "explanation": "The use of gaps that shrink by half each time describes Shell sort."
+  },
+  {
+    "question": "Which of the following data structures is most suitable to implement the 'redo' operation along with 'undo' in FIFA tactics changes?",
+    "options": {
+      "A": "Single Stack",
+      "B": "Two Stacks",
+      "C": "Queue",
+      "D": "Priority Queue"
+    },
+    "correctAnswer": "B",
+    "explanation": "Undo and redo can be implemented with two stacks: one for undo, one for redo."
+  },
+  {
+    "question": "You need to store the order in which FIFA players receive yellow cards and also frequently remove the player with the earliest yellow card. Which data structure is best?",
+    "options": {
+      "A": "Stack",
+      "B": "Queue",
+      "C": "Deque",
+      "D": "Priority Queue"
+    },
+    "correctAnswer": "B",
+    "explanation": "A queue naturally removes items in the same order they were added (FIFO)."
+  },
+  {
+    "question": "You want to design a system that finds the k closest FIFA stadiums to a given location. Which data structure is commonly used for efficient nearest neighbor queries in low dimensions?",
+    "options": {
+      "A": "Stack",
+      "B": "k-d Tree",
+      "C": "Trie",
+      "D": "Union-Find"
+    },
+    "correctAnswer": "B",
+    "explanation": "k-d trees efficiently support nearest neighbor searches in geometric spaces."
+  },
+  {
+    "question": "When implementing FIFA leaderboard pagination, which complexity is most desirable for fetching a page of 20 players by rank?",
+    "options": {
+      "A": "O(1) per page",
+      "B": "O(log n) per page",
+      "C": "O(n) per page",
+      "D": "O(n log n) per page"
+    },
+    "correctAnswer": "A",
+    "explanation": "Ideally, direct index-based access or precomputed pages give O(1) per page."
+  },
+  {
+    "question": "Which operation does NOT typically belong to the core interface of a stack used in FIFA event history?",
+    "options": {
+      "A": "push",
+      "B": "pop",
+      "C": "peek/top",
+      "D": "enqueue"
+    },
+    "correctAnswer": "D",
+    "explanation": "enqueue is a queue operation, not a stack operation."
+  },
+  {
+    "question": "Which of the following is true about BFS and DFS on a FIFA tournament graph?",
+    "options": {
+      "A": "BFS can detect cycles but DFS cannot",
+      "B": "DFS can detect cycles but BFS cannot",
+      "C": "Both can detect cycles",
+      "D": "Neither can detect cycles"
+    },
+    "correctAnswer": "C",
+    "explanation": "Both BFS and DFS can detect cycles with proper visited tracking."
+  },
+  {
+    "question": "If you need to find strongly connected components in a directed FIFA match graph, which algorithm is suitable?",
+    "options": {
+      "A": "Kruskal's Algorithm",
+      "B": "Kosaraju's Algorithm",
+      "C": "Prim's Algorithm",
+      "D": "Dijkstra's Algorithm"
+    },
+    "correctAnswer": "B",
+    "explanation": "Kosaraju's algorithm (or Tarjan's) finds strongly connected components."
+  },
+  {
+    "question": "In a FIFA transfer network graph with positive edge weights (transfer costs), which algorithm finds the minimum-cost path between two clubs?",
+    "options": {
+      "A": "BFS",
+      "B": "DFS",
+      "C": "Dijkstra's Algorithm",
+      "D": "Bellman-Ford Algorithm"
+    },
+    "correctAnswer": "C",
+    "explanation": "Dijkstra's algorithm finds shortest paths in graphs with non-negative weights."
+  },
+  {
+    "question": "You need to sort FIFA match events that arrive almost in order with a few elements out of place. Which sorting algorithm is particularly efficient in this scenario?",
+    "options": {
+      "A": "Bubble Sort",
+      "B": "Insertion Sort",
+      "C": "Selection Sort",
+      "D": "Radix Sort"
+    },
+    "correctAnswer": "B",
+    "explanation": "Insertion sort is efficient for nearly sorted data, running close to O(n)."
+  },
+  {
+    "question": "You maintain a deque of FIFA match highlights to add/remove from both ends. Which data structure directly supports efficient insert and delete from both ends?",
+    "options": {
+      "A": "Deque",
+      "B": "Stack",
+      "C": "Queue",
+      "D": "Priority Queue"
+    },
+    "correctAnswer": "A",
+    "explanation": "A deque (double-ended queue) supports O(1) operations at both ends."
+  },
+  {
+    "question": "If you maintain a monotonic queue (deque) to find the maximum goals in every window of size k in FIFA matches, what is the time complexity?",
+    "options": {
+      "A": "O(nk)",
+      "B": "O(n log k)",
+      "C": "O(n)",
+      "D": "O(log n)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Each element is added and removed at most once, giving O(n)."
+  },
+  {
+    "question": "Which of the following best describes amortized analysis in the context of FIFA data structures?",
+    "options": {
+      "A": "Average over inputs of same size",
+      "B": "Worst-case over all inputs",
+      "C": "Average cost over a sequence of operations",
+      "D": "Best-case cost for a single operation"
+    },
+    "correctAnswer": "C",
+    "explanation": "Amortized analysis looks at the average cost of each operation in a sequence."
+  },
+  {
+    "question": "In a FIFA scoring system implemented with a dynamic array (vector), what is the amortized time complexity of appending a score?",
+    "options": {
+      "A": "O(1)",
+      "B": "O(log n)",
+      "C": "O(n)",
+      "D": "O(n log n)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Dynamic arrays have O(1) amortized append due to geometric resizing."
+  },
+  {
+    "question": "You want to quickly test if a FIFA player has ever been in a given squad, allowing some small probability of false positives but no false negatives. Which structure fits?",
+    "options": {
+      "A": "Hash Set",
+      "B": "Trie",
+      "C": "Bloom Filter",
+      "D": "AVL Tree"
+    },
+    "correctAnswer": "C",
+    "explanation": "Bloom filters are probabilistic sets with possible false positives but no false negatives."
+  },
+  {
+    "question": "In a Red-Black Tree storing FIFA players, which property ensures it stays roughly balanced?",
+    "options": {
+      "A": "All paths from root to leaves have same length",
+      "B": "No two red nodes are adjacent and every path has same number of black nodes",
+      "C": "Every node has exactly two children",
+      "D": "Tree is perfectly balanced at all times"
+    },
+    "correctAnswer": "B",
+    "explanation": "Red-Black tree rules about red nodes and black-height keep it balanced."
+  },
+  {
+    "question": "Consider a min-heap of FIFA match durations. What is the time complexity to build a heap from an unsorted array of n durations using the optimal heapify method?",
+    "options": {
+      "A": "O(n)",
+      "B": "O(n log n)",
+      "C": "O(log n)",
+      "D": "O(n^2)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Bottom-up heap construction runs in linear time O(n)."
+  }
+]

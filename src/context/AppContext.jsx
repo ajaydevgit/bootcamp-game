@@ -1,0 +1,70 @@
+import React, { createContext, useState, useEffect } from 'react';
+import rawQuestions from '../data/questions.json';
+
+export const AppContext = createContext();
+
+const defaultQuestions = rawQuestions.map((q, index) => ({
+  id: index + 1,
+  text: q.question,
+  options: [q.options.A, q.options.B, q.options.C, q.options.D],
+  answer: q.options[q.correctAnswer]
+}));
+
+export const AppProvider = ({ children }) => {
+  const [questions, setQuestions] = useState(() => {
+    const saved = localStorage.getItem('dsa_questions_v2');
+    return saved ? JSON.parse(saved) : defaultQuestions;
+  });
+
+  const [leaderboard, setLeaderboard] = useState(() => {
+    const saved = localStorage.getItem('dsa_leaderboard');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [currentUser, setCurrentUser] = useState({ name: '', mulearnId: '' });
+  const [currentScore, setCurrentScore] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('dsa_questions_v2', JSON.stringify(questions));
+  }, [questions]);
+
+  useEffect(() => {
+    localStorage.setItem('dsa_leaderboard', JSON.stringify(leaderboard));
+  }, [leaderboard]);
+
+  const saveScore = (name, mulearnId, score) => {
+    const day = new Date().toLocaleDateString();
+    setLeaderboard(prev => {
+      const existingIndex = prev.findIndex(entry => entry.mulearnId === mulearnId);
+      
+      if (existingIndex !== -1) {
+        const newLeaderboard = [...prev];
+        newLeaderboard[existingIndex] = {
+          ...newLeaderboard[existingIndex],
+          name: name, // In case they update their name
+          score: newLeaderboard[existingIndex].score + score,
+          day: day
+        };
+        return newLeaderboard.sort((a, b) => b.score - a.score);
+      } else {
+        const newEntry = { id: Date.now(), name, mulearnId, score, day };
+        return [...prev, newEntry].sort((a, b) => b.score - a.score);
+      }
+    });
+  };
+
+  const resetLeaderboard = () => {
+    setLeaderboard([]);
+  };
+
+  return (
+    <AppContext.Provider value={{
+      questions, setQuestions,
+      leaderboard, setLeaderboard, saveScore, resetLeaderboard,
+      currentUser, setCurrentUser,
+      currentScore, setCurrentScore
+    }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
