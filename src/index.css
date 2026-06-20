@@ -302,3 +302,19 @@ input:focus, textarea:focus, select:focus {
     font-size: 2rem !important;
   }
 }
+
+@keyframes flowUpward {
+  0% { transform: translateY(150px) scale(0.8); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.mu-logo-animation {
+  animation: flowUpward 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+

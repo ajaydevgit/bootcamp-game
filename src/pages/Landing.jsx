@@ -6,6 +6,7 @@ function Landing() {
   const navigate = useNavigate();
   const { setCurrentUser, currentUser, leaderboard } = useContext(AppContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef(null);
 
   const teams = [
@@ -51,7 +52,10 @@ function Landing() {
       return;
     }
 
-    navigate('/rules');
+    setIsLoading(true);
+    setTimeout(() => {
+      navigate('/rules');
+    }, 2500);
   };
 
   return (
@@ -67,10 +71,9 @@ function Landing() {
       <div className="bento-grid">
         
         {/* Header / Hero Card */}
-        <div className="bento-card col-span-12 animate-stagger-1 text-center" style={{ minHeight: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <h1 className="text-neon mb-2" style={{ fontSize: '2.5rem', lineHeight: '1.2' }}>
-            Career to Career<br/>
-            <span className="text-primary" style={{ fontSize: '1.8rem', opacity: 0.9 }}>DSA Bootcamp Penalty Shootout ⚽</span>
+        <div className="bento-card col-span-12 animate-stagger-1 text-center" style={{ minHeight: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease' }}>
+          <h1 className="text-neon mb-2" style={{ fontSize: '3rem', lineHeight: '1.2' }}>
+            DSA Bootcamp Penalty Shootout
           </h1>
           <p className="text-secondary mt-2" style={{ fontSize: '1.1rem' }}>10 seconds per question. Quick thinking required.</p>
         </div>
@@ -145,7 +148,7 @@ function Landing() {
         </div>
 
         {/* Action Buttons Card */}
-        <div className="bento-card col-span-12 animate-stagger-4" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', padding: '1.5rem 2rem' }}>
+        <div className="bento-card col-span-12 animate-stagger-4" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', padding: '1.5rem 2rem', transition: 'all 0.3s ease' }}>
           <button className="btn-secondary" onClick={() => navigate('/leaderboard')} style={{ flex: 1, padding: '1.2rem' }}>
             View Dashboard Leaderboard
           </button>
@@ -156,6 +159,23 @@ function Landing() {
         </div>
 
       </div>
+
+      {isLoading && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'var(--pitch-green)', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+          <div className="mu-logo-animation" style={{
+            fontSize: '150px',
+            fontWeight: '900',
+            fontFamily: 'sans-serif',
+            background: 'linear-gradient(to bottom, #3b82f6, #a855f7)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            lineHeight: 1
+          }}>
+            µ
+          </div>
+          <div className="mt-4 text-neon animate-pulse" style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>LOADING MATCH...</div>
+        </div>
+      )}
     </div>
   );
 }
