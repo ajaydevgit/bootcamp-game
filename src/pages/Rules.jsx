@@ -8,7 +8,7 @@ function Rules() {
 
   const startMatch = () => {
     setCurrentScore(0);
-    navigate('/quiz');
+    navigate('/quiz', { replace: true });
   };
 
   return (

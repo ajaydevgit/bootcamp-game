@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 function Quiz() {
-  const { questions, setCurrentScore } = useContext(AppContext);
+  const { questions, setCurrentScore, leaderboard, currentUser, currentSession } = useContext(AppContext);
   const navigate = useNavigate();
   
   const [sessionQuestions, setSessionQuestions] = useState([]);
@@ -13,10 +13,16 @@ function Quiz() {
   const timerRef = useRef(null);
 
   useEffect(() => {
+    const existingEntry = leaderboard.find(entry => entry.mulearnId === currentUser.mulearnId);
+    if (existingEntry && existingEntry.session === currentSession) {
+      navigate('/', { replace: true });
+      return;
+    }
+
     // Pick 5 random questions
     const shuffled = [...questions].sort(() => 0.5 - Math.random());
     setSessionQuestions(shuffled.slice(0, 5));
-  }, [questions]);
+  }, [questions, leaderboard, currentUser.mulearnId, currentSession, navigate]);
 
   useEffect(() => {
     if (sessionQuestions.length === 0 || isAnswering) return;
@@ -60,7 +66,7 @@ function Quiz() {
       // add a small delay before enabling answering again to prevent double-tap bug
       setTimeout(() => setIsAnswering(false), 200);
     } else {
-      navigate('/results');
+      navigate('/results', { replace: true });
     }
   };
 
