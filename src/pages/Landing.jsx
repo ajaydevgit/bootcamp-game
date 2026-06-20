@@ -58,14 +58,46 @@ function Landing() {
     }, 2500);
   };
 
+  // Group leaderboard by team for the ticker
+  const squadStats = teams.map(t => {
+    const squadMembers = leaderboard.filter(l => l.team === t.name);
+    const points = squadMembers.reduce((sum, member) => sum + member.score, 0);
+    return { ...t, points, members: squadMembers.length };
+  }).sort((a, b) => b.points - a.points);
+
+  const totalPoints = squadStats.reduce((sum, s) => sum + s.points, 0) || 1;
+
+  // Double the ticker items for seamless looping
+  const tickerItems = [...squadStats, ...squadStats];
+
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full py-8 relative" style={{ zIndex: 1 }}>
+    <div className="flex flex-col items-center justify-center h-full w-full relative" style={{ zIndex: 1, paddingTop: '56px' }}>
       
-      {/* Dynamic Background Player Images Layer */}
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1, pointerEvents: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', opacity: 0.2, mixBlendMode: 'screen', overflow: 'hidden' }}>
-        <img src="https://images.unsplash.com/photo-1518605368461-1e1e3eecb0ce?w=600&q=80&auto=format&fit=crop" style={{ height: '70%', objectFit: 'contain', WebkitMaskImage: 'linear-gradient(to top, black 50%, transparent 100%)' }} alt="Player 1" />
-        <img src="https://images.unsplash.com/photo-1508344928928-7137b29de216?w=600&q=80&auto=format&fit=crop" style={{ height: '85%', objectFit: 'contain', WebkitMaskImage: 'linear-gradient(to top, black 50%, transparent 100%)' }} alt="Player 2" />
-        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80&auto=format&fit=crop" style={{ height: '70%', objectFit: 'contain', WebkitMaskImage: 'linear-gradient(to top, black 50%, transparent 100%)' }} alt="Player 3" />
+      {/* Ticker Banner */}
+      <div className="ticker-wrap">
+        <div className="ticker">
+          {tickerItems.map((squad, idx) => (
+            <div key={idx} className="ticker-item">
+              <span className="ticker-rank">#{ (idx % squadStats.length) + 1 }</span>
+              <img src={`https://flagcdn.com/w20/${squad.code}.png`} className="ticker-flag" alt={squad.name} />
+              <span className="ticker-country">{squad.name.substring(0, 3).toUpperCase()}</span>
+              <span className="ticker-stat">{((squad.points / totalPoints) * 100).toFixed(1)}%</span>
+              <span className={`ticker-arrow ${squad.points > 0 ? 'up' : 'neutral'}`}>
+                {squad.points > 0 ? '▲' : '−'}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Video Background Layer */}
+      <div className="video-background-container">
+        <iframe
+          src="https://www.youtube.com/embed/QR52cerl0CQ?autoplay=1&mute=1&controls=0&loop=1&playlist=QR52cerl0CQ&playsinline=1&showinfo=0&modestbranding=1"
+          allow="autoplay; encrypted-media"
+          title="Background Video"
+        ></iframe>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(10,15,25,0.75), var(--bg-dark))' }}></div>
       </div>
 
       <div className="bento-grid">

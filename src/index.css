@@ -284,6 +284,71 @@ input:focus, textarea:focus, select:focus {
 .animate-stagger-3 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s; opacity: 0; }
 .animate-stagger-4 { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s; opacity: 0; }
 
+/* Video Background */
+.video-background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background: #000;
+}
+.video-background-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100vh;
+  min-width: 177.77vh;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
+}
+
+/* Ticker Banner */
+.ticker-wrap {
+  width: 100%;
+  background-color: #050810;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+}
+.ticker {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-anim 30s linear infinite;
+}
+@keyframes ticker-anim {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.ticker-rank { color: var(--text-secondary); margin-right: 8px; }
+.ticker-flag { width: 24px; border-radius: 2px; margin-right: 8px; object-fit: cover; }
+.ticker-country { margin-right: 8px; font-weight: 800; }
+.ticker-stat { margin-right: 8px; font-weight: 600; }
+.ticker-arrow.up { color: #10b981; }
+.ticker-arrow.down { color: #ef4444; }
+.ticker-arrow.neutral { color: #6b7280; }
+
 @media (max-width: 768px) {
   .bento-grid {
     display: flex;
@@ -292,15 +357,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 @media (max-width: 600px) {
-  .app-container {
-    padding: 1rem;
-  }
-  .glass-card {
-    padding: 1.5rem;
-  }
-  h1 {
-    font-size: 2rem !important;
-  }
+  .app-container { padding: 1rem; }
+  .glass-card { padding: 1.5rem; }
+  h1 { font-size: 2rem !important; }
 }
 
 @keyframes flowUpward {
@@ -318,4 +377,3 @@ input:focus, textarea:focus, select:focus {
   transform: translateY(-5px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
-
