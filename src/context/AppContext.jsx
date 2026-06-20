@@ -7,12 +7,12 @@ const defaultQuestions = rawQuestions.map((q, index) => ({
   id: index + 1,
   text: q.question,
   options: [q.options.A, q.options.B, q.options.C, q.options.D],
-  answer: q.options[q.correctAnswer]
+  answer: q.options[q.answer || q.correctAnswer]
 }));
 
 export const AppProvider = ({ children }) => {
   const [questions, setQuestions] = useState(() => {
-    const saved = localStorage.getItem('dsa_questions_v2');
+    const saved = localStorage.getItem('dsa_questions_v3');
     return saved ? JSON.parse(saved) : defaultQuestions;
   });
 
@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
   const [currentScore, setCurrentScore] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem('dsa_questions_v2', JSON.stringify(questions));
+    localStorage.setItem('dsa_questions_v3', JSON.stringify(questions));
   }, [questions]);
 
   useEffect(() => {
