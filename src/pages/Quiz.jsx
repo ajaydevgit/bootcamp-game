@@ -9,7 +9,6 @@ function Quiz() {
   const [sessionQuestions, setSessionQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(10);
-  const [shotStatus, setShotStatus] = useState('idle');
   const [isAnswering, setIsAnswering] = useState(false);
   const timerRef = useRef(null);
 
@@ -38,7 +37,7 @@ function Quiz() {
   }, [currentIndex, sessionQuestions, isAnswering]);
 
   const handleTimeOut = () => {
-    triggerMiss();
+    nextQuestion();
   };
 
   const handleAnswer = (option) => {
@@ -48,28 +47,11 @@ function Quiz() {
 
     const currentQ = sessionQuestions[currentIndex];
     if (option === currentQ.answer) {
-      triggerGoal();
-    } else {
-      triggerMiss();
+      setCurrentScore(prev => prev + 1);
     }
-  };
-
-  const triggerGoal = () => {
-    setShotStatus('goal');
-    setCurrentScore(prev => prev + 1);
-
-    setTimeout(() => {
-      setShotStatus('idle');
-      nextQuestion();
-    }, 600);
-  };
-
-  const triggerMiss = () => {
-    setShotStatus('miss');
-    setTimeout(() => {
-      setShotStatus('idle');
-      nextQuestion();
-    }, 600);
+    
+    // Move to next question instantly
+    nextQuestion();
   };
 
   const nextQuestion = () => {
@@ -88,8 +70,6 @@ function Quiz() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full relative w-full">
-      {shotStatus === 'goal' && <div className="goal-animation" style={{ color: '#10b981', textShadow: '0 0 20px rgba(16, 185, 129, 0.5)' }}>CORRECT</div>}
-      {shotStatus === 'miss' && <div className="goal-animation" style={{ color: '#ef4444', textShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}>MISSED</div>}
       
       <div className="glass-card flex-col items-center w-full" style={{ maxWidth: '800px', padding: '3rem', transition: 'all 0.3s ease' }}>
         <div className="flex flex-col items-center w-full mb-8">
