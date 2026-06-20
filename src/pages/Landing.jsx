@@ -49,6 +49,11 @@ function Landing() {
       return;
     }
 
+    if (!currentUser.mulearnId.trim().endsWith('@mulearn')) {
+      alert("🛑 Invalid MuLearn ID! It must end with @mulearn.");
+      return;
+    }
+
     const existingEntry = leaderboard.find(entry => entry.mulearnId === currentUser.mulearnId);
     
     if (existingEntry && existingEntry.session === currentSession) {
