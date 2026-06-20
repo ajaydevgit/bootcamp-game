@@ -61,7 +61,7 @@ function Quiz() {
     setTimeout(() => {
       setShotStatus('idle');
       nextQuestion();
-    }, 1500);
+    }, 600);
   };
 
   const triggerMiss = () => {
@@ -69,13 +69,14 @@ function Quiz() {
     setTimeout(() => {
       setShotStatus('idle');
       nextQuestion();
-    }, 1500);
+    }, 600);
   };
 
   const nextQuestion = () => {
-    setIsAnswering(false);
     if (currentIndex < sessionQuestions.length - 1) {
       setCurrentIndex(prev => prev + 1);
+      // add a small delay before enabling answering again to prevent double-tap bug
+      setTimeout(() => setIsAnswering(false), 200);
     } else {
       navigate('/results');
     }
@@ -87,20 +88,21 @@ function Quiz() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full relative w-full">
-
+      {shotStatus === 'goal' && <div className="goal-animation" style={{ color: '#10b981', textShadow: '0 0 20px rgba(16, 185, 129, 0.5)' }}>CORRECT</div>}
+      {shotStatus === 'miss' && <div className="goal-animation" style={{ color: '#ef4444', textShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}>MISSED</div>}
       
-      <div className="glass-card flex-col items-center w-full" style={{ maxWidth: '800px' }}>
-        <div className="flex justify-between w-full mb-4 items-center">
-          <div className="text-secondary" style={{ fontSize: '1.2rem' }}>
+      <div className="glass-card flex-col items-center w-full" style={{ maxWidth: '800px', padding: '3rem', transition: 'all 0.3s ease' }}>
+        <div className="flex flex-col items-center w-full mb-8">
+          <div className="text-secondary mb-2" style={{ fontSize: '1rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 'bold' }}>
             Question {currentIndex + 1} / 5
           </div>
-          <div className={`text-neon ${timeLeft <= 2 ? 'text-neon-red animate-pulse' : ''}`} style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+          <div className={`text-neon ${timeLeft <= 3 ? 'text-neon-red animate-pulse' : ''}`} style={{ fontSize: '2.5rem', fontWeight: '900', letterSpacing: '3px', fontFamily: 'var(--font-display)' }}>
             00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}
           </div>
         </div>
 
 
-        <h2 className="mb-4 text-center" style={{ fontSize: '1.2rem', minHeight: '60px' }}>
+        <h2 className="mb-8 text-center" style={{ fontSize: '1.6rem', minHeight: '80px', lineHeight: '1.4', fontWeight: '700', color: 'var(--text-primary)' }}>
           {currentQ.text}
         </h2>
 
@@ -109,7 +111,30 @@ function Quiz() {
             <button 
               key={i} 
               className="btn-secondary" 
-              style={{ fontSize: '1.2rem', padding: '1rem', textAlign: 'left', borderLeft: '4px solid var(--pitch-light-green)' }}
+              style={{ 
+                fontSize: '1.1rem', 
+                padding: '1.2rem 1.5rem', 
+                textAlign: 'left', 
+                borderLeft: '4px solid var(--pitch-light-green)',
+                transition: 'all 0.2s ease',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: '8px',
+                color: 'var(--text-primary)'
+              }}
+              onMouseEnter={(e) => {
+                if(!isAnswering) {
+                  e.target.style.background = 'rgba(255,255,255,0.1)';
+                  e.target.style.borderLeftColor = 'var(--neon-accent)';
+                  e.target.style.transform = 'translateY(-2px)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if(!isAnswering) {
+                  e.target.style.background = 'rgba(255,255,255,0.05)';
+                  e.target.style.borderLeftColor = 'var(--pitch-light-green)';
+                  e.target.style.transform = 'none';
+                }
+              }}
               onClick={() => handleAnswer(opt)}
               disabled={isAnswering}
             >
