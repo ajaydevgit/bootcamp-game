@@ -9,7 +9,7 @@ const TEAM_CODES = {
   "South Korea": "kr", "Morocco": "ma", "United States": "us", "Mexico": "mx",
 };
 
-function PodiumCard({ rank, name, points, members, flagCode, isSquad }) {
+function PodiumCard({ rank, name, subtitle, points, members, flagCode, isSquad }) {
   const configs = {
     1: { bg: 'linear-gradient(135deg, rgba(245,158,11,0.25), rgba(217,119,6,0.1))', border: '#f59e0b', label: '#fbbf24', height: 200, badgeBg: 'linear-gradient(135deg, #f59e0b, #d97706)' },
     2: { bg: 'linear-gradient(135deg, rgba(156,163,175,0.2), rgba(107,114,128,0.1))', border: '#9ca3af', label: '#e5e7eb', height: 165, badgeBg: 'linear-gradient(135deg, #9ca3af, #6b7280)' },
@@ -51,6 +51,11 @@ function PodiumCard({ rank, name, points, members, flagCode, isSquad }) {
         <div style={{ fontWeight: '800', fontSize: '0.95rem', color: c.label, textAlign: 'center', lineHeight: 1.2 }}>
           {name}
         </div>
+        {subtitle && (
+          <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: '500', textAlign: 'center' }}>
+            {subtitle}
+          </div>
+        )}
         <div style={{ fontWeight: '900', fontSize: '1.4rem', color: '#fff' }}>
           {points} <span style={{ fontSize: '0.65rem', fontWeight: '600', color: c.label, letterSpacing: '1px' }}>PTS</span>
         </div>
@@ -70,15 +75,20 @@ function Leaderboard() {
   const [activeTab, setActiveTab] = useState('squad');
   const [search, setSearch] = useState('');
 
-  // Squad aggregation
+  // Squad aggregation — include ALL known teams, even with 0 points
   const squadMap = {};
+  // Seed all teams with 0
+  Object.keys(TEAM_CODES).forEach(teamName => {
+    squadMap[teamName] = { name: teamName, points: 0, members: 0 };
+  });
+  // Add actual scores
   leaderboard.forEach(entry => {
     if (!entry.team) return;
     if (!squadMap[entry.team]) squadMap[entry.team] = { name: entry.team, points: 0, members: 0 };
     squadMap[entry.team].points += entry.score || 0;
     squadMap[entry.team].members += 1;
   });
-  const squadList = Object.values(squadMap).sort((a, b) => b.points - a.points);
+  const squadList = Object.values(squadMap).sort((a, b) => b.points - a.points || a.name.localeCompare(b.name));
   const individualList = [...leaderboard].sort((a, b) => (b.score || 0) - (a.score || 0));
 
   const filteredSquad = squadList.filter(s => s.name.toLowerCase().includes(search.toLowerCase()));
@@ -97,7 +107,8 @@ function Leaderboard() {
               <PodiumCard
                 key={isSquad ? item.name : (item.id || item.mulearnId)}
                 rank={i + 1}
-                name={isSquad ? item.name : item.name}
+                name={item.name}
+                subtitle={!isSquad ? item.mulearnId : undefined}
                 points={isSquad ? item.points : (item.score || 0)}
                 members={isSquad ? item.members : undefined}
                 flagCode={isSquad ? (TEAM_CODES[item.name] || null) : (TEAM_CODES[item.team] || null)}
@@ -123,24 +134,33 @@ function Leaderboard() {
                   padding: '14px 20px',
                   transition: 'background 0.2s ease',
                 }}>
-                  <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--text-secondary)', minWidth: '24px' }}>
+                  <span style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--text-secondary)', minWidth: '26px' }}>
                     {i + 4}
                   </span>
-                  <span style={{ color: '#10b981', fontSize: '12px', fontWeight: '700' }}>▲</span>
+                  <span style={{ color: item.points > 0 || (!isSquad && item.score > 0) ? '#10b981' : '#6b7280', fontSize: '12px', fontWeight: '700' }}>
+                    {item.points > 0 || (!isSquad && item.score > 0) ? '▲' : '−'}
+                  </span>
                   {flagCode && (
                     <img src={`https://flagcdn.com/w20/${flagCode}.png`} alt=""
                       style={{ width: '22px', borderRadius: '2px' }} />
                   )}
-                  <span style={{ fontWeight: '700', fontSize: '1rem', color: '#fff', flex: 1 }}>
-                    {isSquad ? item.name : item.name}
-                  </span>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    <span style={{ fontWeight: '700', fontSize: '1rem', color: '#fff' }}>
+                      {item.name}
+                    </span>
+                    {!isSquad && item.mulearnId && (
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '500' }}>
+                        {item.mulearnId}
+                      </span>
+                    )}
+                  </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <span style={{ fontWeight: '800', color: '#60a5fa', fontSize: '0.95rem' }}>
                       {isSquad ? item.points : (item.score || 0)} PTS
                     </span>
                     <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>
                     <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                      {isSquad ? `${item.members} MEMBERS` : item.mulearnId}
+                      {isSquad ? `${item.members} MEMBERS` : ''}
                     </span>
                   </div>
                 </div>
