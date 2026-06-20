@@ -32,6 +32,24 @@ export const AppProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({ name: '', mulearnId: '', team: '' });
   const [currentScore, setCurrentScore] = useState(0);
 
+  const [isGameOpen, setIsGameOpen] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dsa_game_open');
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch (e) {
+      return true;
+    }
+  });
+
+  const [currentSession, setCurrentSession] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dsa_current_session');
+      return saved ? parseInt(saved) : 1;
+    } catch (e) {
+      return 1;
+    }
+  });
+
   useEffect(() => {
     localStorage.setItem('dsa_questions_v3', JSON.stringify(questions));
   }, [questions]);
@@ -40,8 +58,15 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('dsa_leaderboard', JSON.stringify(leaderboard));
   }, [leaderboard]);
 
+  useEffect(() => {
+    localStorage.setItem('dsa_game_open', JSON.stringify(isGameOpen));
+  }, [isGameOpen]);
+
+  useEffect(() => {
+    localStorage.setItem('dsa_current_session', currentSession.toString());
+  }, [currentSession]);
+
   const saveScore = (name, mulearnId, score, team) => {
-    const day = new Date().toLocaleDateString();
     setLeaderboard(prev => {
       const existingIndex = prev.findIndex(entry => entry.mulearnId === mulearnId);
       
@@ -52,11 +77,11 @@ export const AppProvider = ({ children }) => {
           name: name, // In case they update their name
           score: newLeaderboard[existingIndex].score + score,
           team: team || newLeaderboard[existingIndex].team,
-          day: day
+          session: currentSession
         };
         return newLeaderboard.sort((a, b) => b.score - a.score);
       } else {
-        const newEntry = { id: Date.now(), name, mulearnId, score, team, day };
+        const newEntry = { id: Date.now(), name, mulearnId, score, team, session: currentSession };
         return [...prev, newEntry].sort((a, b) => b.score - a.score);
       }
     });
@@ -71,7 +96,9 @@ export const AppProvider = ({ children }) => {
       questions, setQuestions,
       leaderboard, setLeaderboard, saveScore, resetLeaderboard,
       currentUser, setCurrentUser,
-      currentScore, setCurrentScore
+      currentScore, setCurrentScore,
+      isGameOpen, setIsGameOpen,
+      currentSession, setCurrentSession
     }}>
       {children}
     </AppContext.Provider>

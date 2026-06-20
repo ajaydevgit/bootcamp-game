@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext';
 
 function Landing() {
   const navigate = useNavigate();
-  const { setCurrentUser, currentUser, leaderboard } = useContext(AppContext);
+  const { setCurrentUser, currentUser, leaderboard, isGameOpen, currentSession } = useContext(AppContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef(null);
@@ -39,16 +39,20 @@ function Landing() {
   }, []);
 
   const handleStart = () => {
+    if (!isGameOpen) {
+      alert("🛑 The game is currently closed by the Admin. Please wait until it is opened.");
+      return;
+    }
+
     if (!currentUser.name.trim() || !currentUser.mulearnId.trim() || !currentUser.team) {
       alert("Please enter your Name, MuLearn ID, and select a Team to start the shootout!");
       return;
     }
 
-    const today = new Date().toLocaleDateString();
     const existingEntry = leaderboard.find(entry => entry.mulearnId === currentUser.mulearnId);
     
-    if (existingEntry && existingEntry.day === today) {
-      alert("🛑 You have already played your 5 penalties for today! Come back tomorrow.");
+    if (existingEntry && existingEntry.session === currentSession) {
+      alert(`🛑 You have already played in Session ${currentSession}! Wait for the Admin to start the next session.`);
       return;
     }
 

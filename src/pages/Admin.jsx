@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 function Admin() {
-  const { questions, setQuestions, resetLeaderboard } = useContext(AppContext);
+  const { questions, setQuestions, resetLeaderboard, isGameOpen, setIsGameOpen, currentSession, setCurrentSession } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [newQuestion, setNewQuestion] = useState({ text: '', opt1: '', opt2: '', opt3: '', opt4: '', answer: '' });
@@ -74,6 +74,34 @@ function Admin() {
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-neon">Admin Locker Room 🛠️</h1>
           <button className="btn-secondary" onClick={() => navigate('/')}>Exit</button>
+        </div>
+
+        <div className="mb-4 p-4 border border-gray-600 rounded flex justify-between items-center" style={{ background: 'rgba(0,0,0,0.4)' }}>
+          <div>
+            <h3 className="text-primary mb-1">Game Controls</h3>
+            <p className="text-secondary" style={{ fontSize: '0.9rem' }}>
+              Status: {isGameOpen ? <span style={{ color: 'var(--neon-green)' }}>OPEN</span> : <span style={{ color: 'var(--neon-red)' }}>CLOSED</span>} | Active Session: {currentSession}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <button 
+              className={isGameOpen ? "btn-secondary" : "btn-primary"} 
+              style={isGameOpen ? { color: 'var(--neon-red)', borderColor: 'var(--neon-red)' } : { background: 'var(--neon-green)', color: '#000' }}
+              onClick={() => setIsGameOpen(!isGameOpen)}
+            >
+              {isGameOpen ? 'Close Game' : 'Open Game'}
+            </button>
+            <button 
+              className="btn-primary" 
+              onClick={() => {
+                if(window.confirm(`Start Session ${currentSession + 1}? Users will be able to play again.`)) {
+                  setCurrentSession(currentSession + 1);
+                }
+              }}
+            >
+              Start Next Session
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-between mb-4">
