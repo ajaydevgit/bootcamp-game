@@ -12,13 +12,21 @@ const defaultQuestions = rawQuestions.map((q, index) => ({
 
 export const AppProvider = ({ children }) => {
   const [questions, setQuestions] = useState(() => {
-    const saved = localStorage.getItem('dsa_questions_v3');
-    return saved ? JSON.parse(saved) : defaultQuestions;
+    try {
+      const saved = localStorage.getItem('dsa_questions_v3');
+      return saved ? JSON.parse(saved) : defaultQuestions;
+    } catch (e) {
+      return defaultQuestions;
+    }
   });
 
   const [leaderboard, setLeaderboard] = useState(() => {
-    const saved = localStorage.getItem('dsa_leaderboard');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('dsa_leaderboard');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
   });
 
   const [currentUser, setCurrentUser] = useState({ name: '', mulearnId: '', team: '' });
