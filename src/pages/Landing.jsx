@@ -90,14 +90,23 @@ function Landing() {
         </div>
       </div>
 
-      {/* Video Background Layer */}
+      {/* Image Background Layer */}
       <div className="video-background-container">
-        <iframe
-          src="https://www.youtube.com/embed/QR52cerl0CQ?autoplay=1&mute=1&controls=0&loop=1&playlist=QR52cerl0CQ&playsinline=1&showinfo=0&modestbranding=1"
-          allow="autoplay; encrypted-media"
-          title="Background Video"
-        ></iframe>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(10,15,25,0.75), var(--bg-dark))' }}></div>
+        <img
+          src="/football_bg.png"
+          alt="Background"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            pointerEvents: 'none',
+          }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(10,15,25,0.6), rgba(9,9,11,0.92))' }}></div>
       </div>
 
       <div className="bento-grid">
