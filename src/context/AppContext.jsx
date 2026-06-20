@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [currentUser, setCurrentUser] = useState({ name: '', mulearnId: '' });
+  const [currentUser, setCurrentUser] = useState({ name: '', mulearnId: '', team: '' });
   const [currentScore, setCurrentScore] = useState(0);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('dsa_leaderboard', JSON.stringify(leaderboard));
   }, [leaderboard]);
 
-  const saveScore = (name, mulearnId, score) => {
+  const saveScore = (name, mulearnId, score, team) => {
     const day = new Date().toLocaleDateString();
     setLeaderboard(prev => {
       const existingIndex = prev.findIndex(entry => entry.mulearnId === mulearnId);
@@ -43,11 +43,12 @@ export const AppProvider = ({ children }) => {
           ...newLeaderboard[existingIndex],
           name: name, // In case they update their name
           score: newLeaderboard[existingIndex].score + score,
+          team: team || newLeaderboard[existingIndex].team,
           day: day
         };
         return newLeaderboard.sort((a, b) => b.score - a.score);
       } else {
-        const newEntry = { id: Date.now(), name, mulearnId, score, day };
+        const newEntry = { id: Date.now(), name, mulearnId, score, team, day };
         return [...prev, newEntry].sort((a, b) => b.score - a.score);
       }
     });

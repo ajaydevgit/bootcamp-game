@@ -1,4 +1,7 @@
-[
+const fs = require('fs');
+
+const rawQuestions = [
+  // Day 1
   {
     "question": "What is the main goal of placement coding?",
     "options": {
@@ -329,6 +332,8 @@
     "answer": "A",
     "explanation": "Time complexity estimates how runtime scales with input size."
   },
+
+  // Day 2
   {
     "question": "Binary search works on which type of array?",
     "options": {
@@ -659,6 +664,8 @@
     "answer": "A",
     "explanation": "The base case ensures recursion eventually stops."
   },
+
+  // Day 3
   {
     "question": "Dynamic Programming mainly avoids what?",
     "options": {
@@ -989,4 +996,7 @@
     "answer": "A",
     "explanation": "A suitable algorithm leads to faster and more efficient solutions."
   }
-]
+];
+
+fs.writeFileSync('c:\\Users\\HP\\Desktop\\dsabootcamp\\src\\data\\questions.json', JSON.stringify(rawQuestions, null, 2));
+console.log('Successfully wrote refined questions to questions.json');

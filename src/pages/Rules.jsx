@@ -18,7 +18,7 @@ function Rules() {
         
         <ul className="mb-4 text-left" style={{ listStyleType: 'none', padding: 0, fontSize: '1.2rem', lineHeight: '1.8' }}>
           <li>⚽ <strong>5 Questions</strong> per participant.</li>
-          <li>⏱️ <strong>5 Seconds</strong> strictly per question.</li>
+          <li>⏱️ <strong>10 Seconds</strong> strictly per question.</li>
           <li>✅ <strong>1 Goal</strong> for every correct answer.</li>
           <li>🏆 <strong>5 Goals</strong> is the maximum score.</li>
           <li>🥇 Top 3 players win daily prizes!</li>

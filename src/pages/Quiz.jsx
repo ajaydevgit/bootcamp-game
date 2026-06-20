@@ -8,7 +8,7 @@ function Quiz() {
   
   const [sessionQuestions, setSessionQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [shotStatus, setShotStatus] = useState('idle');
   const [isAnswering, setIsAnswering] = useState(false);
   const timerRef = useRef(null);
@@ -22,7 +22,7 @@ function Quiz() {
   useEffect(() => {
     if (sessionQuestions.length === 0 || isAnswering) return;
     
-    setTimeLeft(5);
+    setTimeLeft(10);
     timerRef.current = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -87,8 +87,7 @@ function Quiz() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full relative w-full">
-      {shotStatus === 'goal' && <div className="goal-animation">GOAL! ⚽</div>}
-      {shotStatus === 'miss' && <div className="goal-animation" style={{ color: 'var(--neon-red)', textShadow: 'var(--neon-glow-red)' }}>SAVED! 🧤</div>}
+
       
       <div className="glass-card flex-col items-center w-full" style={{ maxWidth: '800px' }}>
         <div className="flex justify-between w-full mb-4 items-center">
@@ -96,7 +95,7 @@ function Quiz() {
             Question {currentIndex + 1} / 5
           </div>
           <div className={`text-neon ${timeLeft <= 2 ? 'text-neon-red animate-pulse' : ''}`} style={{ fontSize: '3rem', fontWeight: 'bold' }}>
-            00:0{timeLeft}
+            00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}
           </div>
         </div>
 

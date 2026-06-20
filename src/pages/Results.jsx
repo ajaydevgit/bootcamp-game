@@ -33,7 +33,7 @@ function Results() {
 
   useEffect(() => {
     if (!hasSaved.current && currentUser.name) {
-      saveScore(currentUser.name, currentUser.mulearnId, currentScore);
+      saveScore(currentUser.name, currentUser.mulearnId, currentScore, currentUser.team);
       hasSaved.current = true;
       setSaved(true);
     }
